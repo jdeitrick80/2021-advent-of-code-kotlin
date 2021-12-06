@@ -1,17 +1,17 @@
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
+    fun countIncreases(
+        input: List<Int>,
+        groupSize: Int = 1
+    ): Int {
+        var count=0
+        val size: Int = input.size
+        for (i in 0 until(size-groupSize))
+            if ((input.slice(i+1 until i+1+groupSize)).sum() >
+            (input.slice(i until i+groupSize)).sum()) count+=1
+        return count
     }
 
-    fun part2(input: List<String>): Int {
-        return input.size
-    }
-
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
-
-    val input = readInput("Day01")
-    println(part1(input))
-    println(part2(input))
+    val input = readInputAsInts("Day01")
+    println("Part 1: ${countIncreases(input)}")
+    println("Part 2: ${countIncreases(input,3)}")
 }
